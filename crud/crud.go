@@ -1,4 +1,4 @@
-package main
+package crud
 
 import (
 	"fmt"
@@ -8,12 +8,12 @@ import (
 	"github.com/olekukonko/tablewriter"
 )
 
-type CRUD interface {
-	Add(title, description string, amount int) error
-	Delete(index int) error
-	Update(index int, title string) error
-	Read() error
-}
+// type CRUD interface {
+// 	Add(title, description string, amount int) error
+// 	Delete(index int) error
+// 	Update(index int, title string) error
+// 	Read() error
+// }
 
 type Amount struct {
 	Title       string
@@ -84,7 +84,7 @@ func (amounts *Amounts) Read() error {
 			fmt.Sprintf("%d", i+1),
 			amount.Title,
 			amount.Description,
-			string(amount.Amount),
+			string(rune(amount.Amount)),
 			string(createdAt),
 		})
 	}
