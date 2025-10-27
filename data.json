@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Buy Bread",
+    "description": "Today i am go to buy bread",
+    "amount": 20,
+    "dateBuy": "2025-10-27T23:10:45.036807+03:00"
+  },
+  {
+    "title": "Buy Car",
+    "description": "World",
+    "amount": 50,
+    "dateBuy": "2025-10-27T23:17:28.963597+03:00"
+  },
+  {
+    "title": "learn Golang",
+    "description": "I buy course for Golang",
+    "amount": 25000,
+    "dateBuy": "2025-10-27T23:19:30.562946+03:00"
+  }
+]

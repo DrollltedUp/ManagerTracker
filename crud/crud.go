@@ -8,18 +8,19 @@ import (
 	"github.com/olekukonko/tablewriter"
 )
 
-// type CRUD interface {
-// 	Add(title, description string, amount int) error
-// 	Delete(index int) error
-// 	Update(index int, title string) error
-// 	Read() error
-// }
+type CRUD interface {
+	Add(title, description string, amount int) error
+	Delete(index int) error
+	Update(index int, title, description string, amount int) error
+	Read() error
+	GetCount() int
+}
 
 type Amount struct {
-	Title       string
-	Description string
-	Amount      int
-	DateBuy     time.Time
+	Title       string    `json:"title"`
+	Description string    `json:"description"`
+	Amount      int       `json:"amount"`
+	DateBuy     time.Time `json:"dateBuy"`
 }
 
 type Amounts []Amount
@@ -62,7 +63,7 @@ func (amounts *Amounts) isValidate(index int) error {
 
 //Update
 
-func (amounts *Amounts) Update(index int, title string) error {
+func (amounts *Amounts) Update(index int, title, description string, amount int) error {
 	a := *amounts
 
 	if err := a.isValidate(index); err != nil {
@@ -91,4 +92,11 @@ func (amounts *Amounts) Read() error {
 	table.Render()
 
 	return nil
+}
+
+// Get Count
+
+func (amounts *Amounts) GetCount() int {
+
+	return len(*amounts)
 }
