@@ -3,6 +3,7 @@ package crud
 import (
 	"fmt"
 	"os"
+	"strconv"
 	"time"
 
 	"github.com/olekukonko/tablewriter"
@@ -70,6 +71,8 @@ func (amounts *Amounts) Update(index int, title, description string, amount int)
 		return err
 	}
 	a[index].Title = title
+	a[index].Description = description
+	a[index].Amount = amount
 
 	return nil
 }
@@ -81,11 +84,12 @@ func (amounts *Amounts) Read() error {
 	table.Header([]string{"#", "Title", "Description", "Amount", "Date"})
 	for i, amount := range *amounts {
 		createdAt := amount.DateBuy.Format("2006-01-02 15:04")
+		amountStr := strconv.Itoa(amount.Amount)
 		table.Append([]string{
 			fmt.Sprintf("%d", i+1),
 			amount.Title,
 			amount.Description,
-			string(rune(amount.Amount)),
+			amountStr + "$",
 			string(createdAt),
 		})
 	}

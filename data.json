@@ -12,9 +12,21 @@
     "dateBuy": "2025-10-27T23:17:28.963597+03:00"
   },
   {
-    "title": "learn Golang",
-    "description": "I buy course for Golang",
-    "amount": 25000,
+    "title": "My Girl",
+    "description": "Send 1500$ for my Girl",
+    "amount": 1500,
     "dateBuy": "2025-10-27T23:19:30.562946+03:00"
+  },
+  {
+    "title": "Buy Bus",
+    "description": "Go to Work",
+    "amount": 20,
+    "dateBuy": "2025-10-28T10:42:19.155284+03:00"
+  },
+  {
+    "title": "Hello",
+    "description": "World",
+    "amount": 20,
+    "dateBuy": "2025-10-28T10:44:07.125513+03:00"
   }
 ]

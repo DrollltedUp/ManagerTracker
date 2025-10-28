@@ -15,26 +15,21 @@ var (
 	storageManager = storage.NewStorage[crud.Amounts]("data.json")
 )
 
-// loadData загружает данные из хранилища
 func loadData() error {
 	return storageManager.Load(crudInstance)
 }
 
-// saveData сохраняет данные в хранилище
 func saveData() error {
 	return storageManager.Save(*crudInstance)
 }
 
 func init() {
-	// Загружаем данные при инициализации пакета
 	if err := loadData(); err != nil {
 		if os.IsNotExist(err) {
-			// Файл не существует - создаем пустой список
 			*crudInstance = crud.Amounts{}
 			fmt.Println("No existing data found. Starting with empty list.")
 		} else {
 			fmt.Printf("Warning: Error loading data: %v\n", err)
-			// Продолжаем с пустым списком
 			*crudInstance = crud.Amounts{}
 		}
 	} else {
@@ -49,7 +44,7 @@ func Main() {
 		Long:  "A CLI application for managing personal expenses and financial records",
 	}
 
-	// ADD command
+	// ADD
 	var addCMD = &cobra.Command{
 		Use:     "add <title> <description> <amount>",
 		Short:   "Add new expense",
@@ -65,7 +60,6 @@ func Main() {
 				return
 			}
 
-			// Показываем текущее количество записей перед добавлением
 			currentCount := len(*crudInstance)
 			fmt.Printf("Current records: %d\n", currentCount)
 
@@ -83,7 +77,7 @@ func Main() {
 		},
 	}
 
-	// DELETE command
+	// DELETE
 	var deleteCMD = &cobra.Command{
 		Use:     "delete <index>",
 		Short:   "Delete expense by index",
@@ -96,7 +90,6 @@ func Main() {
 				return
 			}
 
-			// Преобразуем в 0-based индекс
 			actualIndex := index - 1
 
 			if err := crudInstance.Delete(actualIndex); err != nil {
@@ -113,7 +106,7 @@ func Main() {
 		},
 	}
 
-	// UPDATE command
+	// UPDATE
 	var updateCMD = &cobra.Command{
 		Use:     "update <index> <title> <description> <amount>",
 		Short:   "Update expense details",
@@ -134,7 +127,6 @@ func Main() {
 				return
 			}
 
-			// Преобразуем в 0-based индекс
 			actualIndex := index - 1
 
 			if err := crudInstance.Update(actualIndex, title, description, amount); err != nil {
@@ -151,7 +143,7 @@ func Main() {
 		},
 	}
 
-	// READ command
+	// READ
 	var readCMD = &cobra.Command{
 		Use:     "list",
 		Short:   "Display all expenses",
@@ -163,7 +155,7 @@ func Main() {
 		},
 	}
 
-	// STATS command - новая команда для статистики
+	// STATS
 	var statsCMD = &cobra.Command{
 		Use:     "stats",
 		Short:   "Show statistics",
